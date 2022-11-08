@@ -1,0 +1,62 @@
+from grafo import Grafo
+g = Grafo(dirigido=False)
+
+g.insertar_vertice('Darrth Vader')
+g.insertar_vertice('Luke Skywalker')
+g.insertar_vertice('Leia Organa')
+g.insertar_vertice('Obi Wan Kenobi')
+g.insertar_vertice('Yoda')
+g.insertar_vertice('Boba Fett')
+g.insertar_vertice('C 3PO')
+g.insertar_vertice('Rey')
+g.insertar_vertice('Kylo Ren')
+g.insertar_vertice('Chewbacca')
+g.insertar_vertice('R2 D2')
+g.insertar_vertice('BB 8')
+g.insertar_vertice('Han solo')
+
+g.insertar_arista('Darrth Vader', 'Luke Skywalker', 10)
+g.insertar_arista('Darrth Vader', 'Leia Organa', 9)
+g.insertar_arista('Darrth Vader', 'Obi Wan Kenobi', 6)
+g.insertar_arista('Darrth Vader', 'Han solo', 1)
+g.insertar_arista('Darrth Vader', 'C 3PO', 1)
+g.insertar_arista('Luke Skywalker', 'Leia Organa', 7)
+g.insertar_arista('Luke Skywalker', 'Obi Wan Kenobi', 8)
+g.insertar_arista('Luke Skywalker', 'Han solo', 12)
+g.insertar_arista('Luke Skywalker', 'R2 D2', 2)
+g.insertar_arista('Leia Organa', 'Han solo', 9)
+g.insertar_arista('Leia Organa', 'Yoda', 8)
+g.insertar_arista('Yoda', 'Han solo', 3)
+g.insertar_arista('Yoda', 'Darrth Vader', 5)
+g.insertar_arista('Yoda', 'Luke Skywalker', 9)
+g.insertar_arista('Yoda', 'Chewbacca', 4)
+g.insertar_arista('Boba Fett', 'Han solo', 3)
+g.insertar_arista('C 3PO', 'Rey', 5)
+g.insertar_arista('Rey', 'Kylo Ren', 3)
+g.insertar_arista('Rey', 'Chewbacca', 1)
+g.insertar_arista('Kylo Ren', 'Luke Skywalker', 1)
+g.insertar_arista('Kylo Ren', 'BB 8', 6)
+g.insertar_arista('R2 D2', 'Han solo', 2)
+g.insertar_arista('Han solo', 'Chewbacca', 6)
+g.insertar_arista('Han Solo', 'R2 D2', 3)
+
+arbol_min=g.kruskal()
+print(arbol_min)
+peso_total = 0
+arbol_min = arbol_min[0].split('-')
+for nodo in arbol_min:
+    nodo = nodo.split(';')
+    peso_total += int(nodo[2])
+    print(f'{nodo[0]}-{nodo[1]}-{nodo[2]}-{nodo[3]}')
+
+print('episodios que compartieron mas de dos episodios ')
+personajes=g.episodios_star_wars()
+for personaje in personajes:    
+    print(personaje,personajes[personaje])
+
+print()
+
+episodios=g.personajes_mayor_episodios_compartidos()
+print(episodios)
+for personaje in episodios:    
+    print(personaje,episodios[personaje])
