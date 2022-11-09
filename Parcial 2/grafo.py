@@ -60,6 +60,25 @@ class Arista():
             print(aux.info, aux.peso)
             aux = aux.sig
 
+    def barrido_aristas2(self):
+        aux = self.__inicio
+        lista=[]
+        while (aux is not None):
+            if aux.peso > 2:
+                lista.append(aux.info)
+            aux = aux.sig
+        return lista
+
+    def barrido_aristas3(self):
+        aux = self.__inicio
+        lista=[]
+        mayor=aux.info
+        peso=aux.peso
+        while (aux is not None):
+            if aux.peso > peso:
+               lista.append(aux)
+            aux = aux.sig
+        return lista  
     def busqueda_arista(self, buscado, campo=None):
         pos = None
         aux = self.__inicio
@@ -357,7 +376,7 @@ class Grafo():
         aristas = HeapMin()
         aux = self.__inicio
         while aux is not None:
-            print(aux)
+            #print(aux)
             bosque.append(str(aux.info))
             adyacentes = aux.adyacentes.get_inicio()
             while adyacentes is not None:
@@ -422,16 +441,25 @@ class Grafo():
             aux = aux.sig
         return paises
 
-    def episodios_star_wars(self):
-        personajes = {}
+    def episodios_star_wars(self): #asi pero usar barrido aux=getincio aux2=aux2.peso
         aux = self.__inicio
         while aux is not None:
-            if aux.info not in personajes:
-                if aux.adyacentes._Arista__inicio.peso > 2:
-                    personajes['personaje 1'] = aux.info
-                    personajes['personaje 2'] = aux.adyacentes._Arista__inicio.info
+                aux2=aux.adyacentes.get_inicio()
+                while aux2 is not None:
+                    if aux2.peso > 2:
+                        print({aux.info},{aux.adyacentes})
+                    aux = aux.sig
+  
+    def episodios_star_wars2(self):
+        aux = self.__inicio
+        while aux is not None:
+            aux2=aux.adyacentes.barrido_aristas2()
+            for arista in aux2:
+                  print({aux.info},{arista})
             aux = aux.sig
-        return personajes
+    
+
+
 
     def maravillas_arquitec_naturales(self):
         paises = {}
@@ -471,19 +499,22 @@ class Grafo():
             aux = aux.sig
         return paises
 
-    def personajes_mayor_episodios_compartidos(self):
-        personajes = {}
-        aux = self.__inicio
-        while aux is not None:
-            personaje = aux.adyacentes._Arista__inicio.info
-            if personaje not in personajes:
-                personajes[personaje] = {'episodios': 0}
-            else:
-                cantEps = personajes[personaje]['episodios'] + 1
-                personajes[personaje]['episodios'] = cantEps
 
+
+    def  personajes_mayor_episodios_compartidos2(self): #asi pero usar barrido aux=getincio aux2=aux2.peso
+        aux = self.__inicio
+        aux2=aux.adyacentes.get_inicio()
+        mayor=aux2.peso
+        personaje=aux2.info
+        aux = aux.sig
+        while aux is not None:
+            aux2=aux.adyacentes.get_inicio()
+            if aux2 is not None and aux2.peso > mayor:
+                mayor=aux2.peso
+                personaje=aux2.info
             aux = aux.sig
-        return personajes
+        print(personaje)
+       
 
 #! algoritmos especiales dijkstra prim kruskal
 

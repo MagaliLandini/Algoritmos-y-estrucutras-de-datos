@@ -15,7 +15,7 @@ g.insertar_vertice('R2 D2')
 g.insertar_vertice('BB 8')
 g.insertar_vertice('Han solo')
 
-g.insertar_arista('Darrth Vader', 'Luke Skywalker', 10)
+g.insertar_arista('Darrth Vader', 'Luke Skywalker', 15)
 g.insertar_arista('Darrth Vader', 'Leia Organa', 9)
 g.insertar_arista('Darrth Vader', 'Obi Wan Kenobi', 6)
 g.insertar_arista('Darrth Vader', 'Han solo', 1)
@@ -50,13 +50,15 @@ for nodo in arbol_min:
     print(f'{nodo[0]}-{nodo[1]}-{nodo[2]}-{nodo[3]}')
 
 print('episodios que compartieron mas de dos episodios ')
-personajes=g.episodios_star_wars()
-for personaje in personajes:    
-    print(personaje,personajes[personaje])
+g.episodios_star_wars2()
+#for personaje in personajes:    
+#    print(personaje,personajes[personaje])
 
 print()
+print('Personajes con mayor episodios')
+g.personajes_mayor_episodios_compartidos2()
+#print(episodios)
+#for personaje in episodios:    
+#    print(personaje,episodios[personaje])
+#g.episodios_star_warspunto3()
 
-episodios=g.personajes_mayor_episodios_compartidos()
-print(episodios)
-for personaje in episodios:    
-    print(personaje,episodios[personaje])
